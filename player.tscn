@@ -1,0 +1,267 @@
+[gd_scene format=3 uid="uid://by6qftsa23dqf"]
+
+[ext_resource type="Script" uid="uid://bgp1tswr8na3j" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://ctnvlrxft21mq" path="res://playerSpriteHaven-Sheet.png" id="2_hqtel"]
+[ext_resource type="Script" uid="uid://dvy5s5bajdy8a" path="res://centre_point.gd" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cdvuk1a4c2fyp" path="res://swordHaven-Sheet.png" id="4_hqtel"]
+[ext_resource type="Texture2D" uid="uid://pk4hutteoern" path="res://healthbar.png" id="5_sweqy"]
+[ext_resource type="AudioStream" uid="uid://bvh48lbxeilhc" path="res://deflect.wav" id="6_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://bewi04l8wv0ft" path="res://hitHurt.wav" id="7_1jxqw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xv0"]
+size = Vector2(28, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggojm"]
+size = Vector2(2.25, 3.625)
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("centrePoint/directionArrow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_1jxqw"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "swordNormal"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("centrePoint/directionArrow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b26j0"]
+resource_name = "swordSlash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("centrePoint/directionArrow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_dw050"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 0, 4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b26j0"]
+_data = {
+&"RESET": SubResource("Animation_sweqy"),
+&"attack": SubResource("Animation_2hs0m"),
+&"idle": SubResource("Animation_1jxqw"),
+&"swordNormal": SubResource("Animation_hqtel"),
+&"swordSlash": SubResource("Animation_b26j0"),
+&"walk": SubResource("Animation_dw050")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+radius = 121.037186
+
+[sub_resource type="Animation" id="Animation_n7ghd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../centrePoint/directionArrow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ivps1"]
+resource_name = "normalSword"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../centrePoint/directionArrow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nvl01"]
+resource_name = "swordSlash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../centrePoint/directionArrow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivps1"]
+_data = {
+&"RESET": SubResource("Animation_n7ghd"),
+&"normalSword": SubResource("Animation_ivps1"),
+&"swordSlash": SubResource("Animation_nvl01")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35xv0"]
+radius = 20.0
+height = 46.0
+
+[node name="player" type="CharacterBody2D" unique_id=19563329 groups=["PlayerVicinity"]]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=915069620]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_35xv0")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=47142788]
+texture_filter = 1
+texture = ExtResource("2_hqtel")
+hframes = 6
+
+[node name="centrePoint" type="Marker2D" parent="." unique_id=1435873426]
+script = ExtResource("3_i3pqv")
+
+[node name="refreshTimer" type="Timer" parent="centrePoint" unique_id=1081223296]
+one_shot = true
+
+[node name="directionArrow" type="Sprite2D" parent="centrePoint" unique_id=404577219]
+texture_filter = 1
+position = Vector2(34, 0)
+rotation = 1.5707964
+texture = ExtResource("4_hqtel")
+hframes = 2
+
+[node name="slashArea" type="Area2D" parent="centrePoint/directionArrow" unique_id=588433826]
+position = Vector2(-1045.3334, -13.241379)
+scale = Vector2(21.333334, 4.413793)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="centrePoint/directionArrow/slashArea" unique_id=1116150089]
+position = Vector2(49, 3.2265625)
+shape = SubResource("RectangleShape2D_ggojm")
+disabled = true
+
+[node name="Timer" type="Timer" parent="centrePoint" unique_id=851312941]
+wait_time = 0.4
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1052662203]
+libraries/ = SubResource("AnimationLibrary_b26j0")
+
+[node name="playerZone" type="Area2D" parent="." unique_id=224801448 groups=["PlayerVicinity"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerZone" unique_id=1287248048 groups=["PlayerVicinity"]]
+shape = SubResource("CircleShape2D_hqtel")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=316987855]
+root_node = NodePath("../AnimationPlayer")
+libraries/ = SubResource("AnimationLibrary_ivps1")
+
+[node name="healthbar" type="Sprite2D" parent="." unique_id=1933435717]
+z_index = 2
+texture_filter = 1
+position = Vector2(-264, -213)
+scale = Vector2(3, 3)
+texture = ExtResource("5_sweqy")
+hframes = 12
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1457562431]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=853242152]
+position = Vector2(2, 0)
+shape = SubResource("CapsuleShape2D_35xv0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=766115915]
+
+[node name="deflectSound" type="AudioStreamPlayer2D" parent="." unique_id=1746769760]
+stream = ExtResource("6_2hs0m")
+
+[node name="hitSound" type="AudioStreamPlayer2D" parent="." unique_id=93404615]
+stream = ExtResource("7_1jxqw")
+
+[connection signal="timeout" from="centrePoint/refreshTimer" to="centrePoint" method="_on_refresh_timer_timeout"]
+[connection signal="timeout" from="centrePoint/Timer" to="centrePoint" method="_on_timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

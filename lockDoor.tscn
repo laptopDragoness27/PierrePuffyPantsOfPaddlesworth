@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://sdsu4d5qbr1c"]
+
+[ext_resource type="Script" uid="uid://b2b24gakfo0v3" path="res://lock_door.gd" id="1_dh6qw"]
+[ext_resource type="Texture2D" uid="uid://qekcn7so2tw6" path="res://door-Sheet.png" id="2_dh6qw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xv0"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggojm"]
+size = Vector2(63, 14.5)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1028483974]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_dh6qw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=984171642]
+shape = SubResource("RectangleShape2D_35xv0")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=327705719]
+texture_filter = 1
+position = Vector2(0.5, 0)
+texture = ExtResource("2_dh6qw")
+hframes = 2
+
+[node name="playerEnter" type="Area2D" parent="." unique_id=485378597]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerEnter" unique_id=325509329]
+position = Vector2(0, 24.75)
+shape = SubResource("RectangleShape2D_ggojm")
+
+[connection signal="body_entered" from="playerEnter" to="." method="_on_player_enter_body_entered"]

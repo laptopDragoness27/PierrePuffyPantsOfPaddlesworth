@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bjc2bnvusclf2"]
+
+[ext_resource type="Script" uid="uid://cqipb7gggpbwo" path="res://win.gd" id="1_hgi8f"]
+[ext_resource type="FontFile" uid="uid://yojl1olnhgci" path="res://PressStart2P-Regular.ttf" id="1_wao2c"]
+
+[node name="Control" type="Control" unique_id=2146710808]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hgi8f")
+
+[node name="Label" type="Label" parent="." unique_id=1387577705]
+texture_filter = 1
+layout_mode = 0
+offset_left = 202.0
+offset_top = 103.0
+offset_right = 1122.0
+offset_bottom = 143.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 40
+text = "The"
+
+[node name="Label2" type="Label" parent="." unique_id=2054425473]
+texture_filter = 1
+layout_mode = 0
+offset_left = 61.0
+offset_top = 153.0
+offset_right = 981.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 40
+text = "curse"
+
+[node name="Label3" type="Label" parent="." unique_id=2043271556]
+texture_filter = 1
+layout_mode = 0
+offset_left = 241.0
+offset_top = 200.0
+offset_right = 1161.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 40
+text = "is"
+
+[node name="Label4" type="Label" parent="." unique_id=1863916199]
+texture_filter = 1
+layout_mode = 0
+offset_left = 136.0
+offset_top = 254.0
+offset_right = 1056.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 40
+text = "now"
+
+[node name="Label5" type="Label" parent="." unique_id=1233543034]
+texture_filter = 1
+layout_mode = 0
+offset_left = 213.0
+offset_top = 319.0
+offset_right = 1133.0
+offset_bottom = 359.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wao2c")
+theme_override_font_sizes/font_size = 40
+text = "lifted"
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1705761255]
+z_index = -1
+texture_filter = 1
+position = Vector2(-8, -1)
+color = Color(1, 0.7416667, 0.38, 1)
+polygon = PackedVector2Array(16, 45, 35, 26, 65, 10, 101, 18, 138, 44, 510, 95, 539, 62, 581, 52, 615, 75, 624, 118, 606, 435, 583, 457, 544, 470, 506, 456, 486, 428, 115, 403, 91, 437, 53, 451, 25, 435, 14, 398)
+
+[node name="Button" type="Button" parent="." unique_id=1382288478]
+texture_filter = 1
+layout_mode = 0
+offset_left = 111.0
+offset_top = 427.0
+offset_right = 423.0
+offset_bottom = 472.0
+theme_override_fonts/font = ExtResource("1_wao2c")
+text = "Return to title"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

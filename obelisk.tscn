@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dakakg6k4lbs8"]
+
+[ext_resource type="Texture2D" uid="uid://b3cpgxf7qtqu1" path="res://obelisk.png" id="1_ayugd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xv0"]
+size = Vector2(16, 29)
+
+[node name="Obelisk" type="StaticBody2D" unique_id=113418586]
+
+[node name="Obelisk" type="Sprite2D" parent="." unique_id=1060730346]
+texture_filter = 1
+texture = ExtResource("1_ayugd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=180697893]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_35xv0")

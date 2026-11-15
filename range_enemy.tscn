@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cnsh6bpxac5pu"]
+
+[ext_resource type="Script" uid="uid://4773w3y17ult" path="res://character_body_2d.gd" id="1_82ww7"]
+[ext_resource type="Texture2D" uid="uid://byqh25twg470g" path="res://littleDevil.png" id="2_82ww7"]
+[ext_resource type="AudioStream" uid="uid://ieyf3dksupun" path="res://enenmyHit.wav" id="3_cam0i"]
+[ext_resource type="AudioStream" uid="uid://bhamupjdojcgb" path="res://enemyShoot.wav" id="3_ti4cm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82ww7"]
+radius = 15.0
+height = 38.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35xv0"]
+size = Vector2(18, 27)
+
+[sub_resource type="Animation" id="Animation_82ww7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_08oxc"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ti4cm"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_cam0i"]
+resource_name = "walk"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08oxc"]
+_data = {
+&"RESET": SubResource("Animation_82ww7"),
+&"attack": SubResource("Animation_08oxc"),
+&"idle": SubResource("Animation_ti4cm"),
+&"walk": SubResource("Animation_cam0i")
+}
+
+[node name="RangeEnemy" type="CharacterBody2D" unique_id=859989426 groups=["Enemy"]]
+script = ExtResource("1_82ww7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1714339397]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=720029311]
+shape = SubResource("CapsuleShape2D_82ww7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=744484163]
+texture_filter = 1
+position = Vector2(2, 0)
+scale = Vector2(1, 0.953)
+texture = ExtResource("2_82ww7")
+hframes = 7
+
+[node name="Timer" type="Timer" parent="." unique_id=680299440]
+wait_time = 2.0
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=318824522]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_35xv0")
+
+[node name="bulletAxis" type="Marker2D" parent="." unique_id=2093731167]
+
+[node name="bulletPoint" type="Marker2D" parent="bulletAxis" unique_id=2103371772]
+position = Vector2(29, 0)
+
+[node name="shootTimer" type="Timer" parent="bulletAxis" unique_id=645319166]
+wait_time = 3.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=728216953]
+libraries/ = SubResource("AnimationLibrary_08oxc")
+
+[node name="deadSound" type="AudioStreamPlayer2D" parent="." unique_id=1162279576 groups=["room1"]]
+stream = ExtResource("3_cam0i")
+
+[node name="enemyAttack" type="AudioStreamPlayer2D" parent="." unique_id=1582734966]
+stream = ExtResource("3_ti4cm")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="bulletAxis/shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="finished" from="deadSound" to="." method="_on_dead_sound_finished"]
