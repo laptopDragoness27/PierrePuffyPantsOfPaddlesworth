@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dd4r4r4g65kst"]
+
+[ext_resource type="Script" uid="uid://pucfjfu3lnfn" path="res://boss_enemy.gd" id="1_1rih2"]
+[ext_resource type="Texture2D" uid="uid://qqimq7hr5rcd" path="res://bosssheet.png" id="2_1rih2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2y7n"]
+radius = 116.03879
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35xv0"]
+radius = 98.65597
+
+[sub_resource type="Animation" id="Animation_xldg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sqq6n"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_046hu"]
+_data = {
+&"RESET": SubResource("Animation_xldg4"),
+&"idle": SubResource("Animation_sqq6n")
+}
+
+[node name="BossEnemy" type="CharacterBody2D" unique_id=1100060558 groups=["Enemy"]]
+script = ExtResource("1_1rih2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=319331565]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2120134933]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_t2y7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=661996227]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_1rih2")
+hframes = 6
+
+[node name="Timer" type="Timer" parent="." unique_id=1668070184]
+wait_time = 5.0
+autostart = true
+
+[node name="Marker1" type="Marker2D" parent="." unique_id=2146094828]
+position = Vector2(-209, 91)
+
+[node name="Marker2" type="Marker2D" parent="." unique_id=1640834013]
+position = Vector2(177, 111)
+
+[node name="Marker3" type="Marker2D" parent="." unique_id=1455766723]
+position = Vector2(0, -198)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=56786722]
+shape = SubResource("CircleShape2D_35xv0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=247366648]
+libraries/ = SubResource("AnimationLibrary_046hu")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
